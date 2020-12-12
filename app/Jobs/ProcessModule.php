@@ -48,8 +48,8 @@ class ProcessModule implements ShouldQueue
 
         $more_col = [];
 
-        $total_cols = config('custom.column_counts');
         $col_name = config('custom.column_names');
+        $total_cols = count($col_name);
         $i = 0;
         while ($filedata = fgetcsv($file)) {
             $col_num = count($filedata);
@@ -59,7 +59,6 @@ class ProcessModule implements ShouldQueue
             }
 
             if ($col_num < $total_cols) {
-                // dd($filedata);
                 continue;
             }
 
