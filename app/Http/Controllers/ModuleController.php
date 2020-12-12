@@ -36,7 +36,7 @@ class ModuleController extends Controller
 
 	    		// $this->dispatch($processModule($filename));
 		    	
-		    	$status = 'Processing...';
+		    	$status = 'Errors will be sent by email';
 	    	}
 	    	else {
 	    		// Session::flash('message','file is not csv.');

@@ -12,6 +12,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+// use Illuminate\Support\Facades\Session;
 use App\Mail\ModuleUploadErrors;
 
 use App\Models\Module;
@@ -171,6 +172,8 @@ class ProcessModule implements ShouldQueue
         }
 
         fclose($file);
+        
+        // Session::flash('status','Data Uploaded');
 
         Mail::to('charush@accubits.com')->send(new ModuleUploadErrors($errors));
     }
