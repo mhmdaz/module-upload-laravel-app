@@ -16,7 +16,8 @@ use App\Http\Controllers\ModuleController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('upload');
+    // return view('welcome');
 });
 
 Route::get('upload', [ModuleController::class, 'uploadForm']);

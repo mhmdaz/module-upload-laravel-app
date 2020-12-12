@@ -24,7 +24,17 @@ class ModuleController extends Controller
 	    	$valid_extension = array("csv");
 
 	    	if (in_array(strtolower($extension), $valid_extension)) {
-	    		ProcessModule::dispatch();
+	    		// $processModule = new ProcessModule();
+
+		        $file = request()->file('csv_file');
+
+		        $filename = $file->getClientOriginalName();
+
+		        $file->move("storage", $filename);
+
+		        processModule::dispatch($filename);
+
+	    		// $this->dispatch($processModule($filename));
 		    	
 		    	$status = 'Processing...';
 	    	}

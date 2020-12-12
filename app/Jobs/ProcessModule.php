@@ -20,14 +20,16 @@ class ProcessModule implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    protected $filename;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($filename)
     {
-        //
+        $this->filename = $filename;
     }
 
     /**
@@ -40,12 +42,7 @@ class ProcessModule implements ShouldQueue
         // $path = $file->storeAs('public/storage', $filename);
         // $file = Storage::get($path);
 
-        $file = request()->file('csv_file');
-
-        $filename = $file->getClientOriginalName();
-
-        $file->move("storage", $filename);
-        $filepath = public_path("storage/".$filename);
+        $filepath = public_path("storage/".$this->filename);
         $file = fopen($filepath, "r");
 
         $more_col = [];
